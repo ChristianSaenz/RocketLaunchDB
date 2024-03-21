@@ -25,8 +25,8 @@ public class UsersController : ControllerBase
             _logger = logger;
         }
 
-        // GET: api/Users
-        [HttpGet]
+   // GET: api/Users
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> GetUsers()
     {
         return await _context.User.ToListAsync();
@@ -128,7 +128,7 @@ public class UsersController : ControllerBase
             var isReferenced = await _context.RocketLaunches.AnyAsync(u => u.UserId == id);
             if (isReferenced)
             {
-                // Log and return a warning without deleting the LaunchVehicle
+                
                 _logger.LogWarning("Attempted to delete User with ID {Id} which is referenced by one or more RocketLaunch records.", id);
                 return BadRequest($"User with ID {id} is referenced by one or more RocketLaunch records and cannot be deleted without affecting those records.");
             }

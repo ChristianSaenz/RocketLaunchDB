@@ -124,11 +124,11 @@ namespace Rocket_Launch_Database__2_.Controllers
                 return NotFound($"A launch vehicle with ID {id} was not found.");
             }
 
-            // Check if the LaunchVehicle is referenced by any RocketLaunch records
+            
             var isReferenced = await _context.RocketLaunches.AnyAsync(rl => rl.LaunchVehicleId == id);
             if (isReferenced)
             {
-                // Log and return a warning without deleting the LaunchVehicle
+                
                 _logger.LogWarning("Attempted to delete Launch Vehicle with ID {Id} which is referenced by one or more RocketLaunch records.", id);
                 return BadRequest($"Launch Vehicle with ID {id} is referenced by one or more RocketLaunch records and cannot be deleted without affecting those records.");
             }

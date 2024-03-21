@@ -80,7 +80,7 @@ namespace Rocket_Launch_Database__2_.Controllers
                 _logger.LogError(ex, "An error occurred updating the Paylaod with ID {Id}.", id);
                 return StatusCode(500, "An error occurred while processing your request.");
             }
-            // Successfully updated
+           
             return NoContent();
         }
 
@@ -124,7 +124,7 @@ namespace Rocket_Launch_Database__2_.Controllers
             var isReferenced = await _context.RocketLaunches.AnyAsync(pl => pl.PayloadId == id);
             if (isReferenced)
             {
-                // Log and return a warning without deleting the LaunchVehicle
+                
                 _logger.LogWarning("Attempted to delete Payload with ID {Id} which is referenced by one or more RocketLaunch records.", id);
                 return BadRequest($"Payload with ID {id} is referenced by one or more RocketLaunch records and cannot be deleted without affecting those records.");
             }

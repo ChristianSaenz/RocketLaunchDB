@@ -132,11 +132,11 @@ namespace Rocket_Launch_Database__2_.Controllers
                 return NotFound($"A launch site with ID {id} was not found.");
             }
 
-            // Check if the LaunchSite is referenced by any RocketLaunch records
+            
             var isReferenced = await _context.RocketLaunches.AnyAsync(rl => rl.LaunchSiteId == id);
             if (isReferenced)
             {
-                // Log and return a warning without deleting the LaunchSite
+               
                 _logger.LogWarning("Attempted to delete Launch Site with ID {Id} which is referenced by one or more RocketLaunch records.", id);
                 return BadRequest($"Launch Site with ID {id} is referenced by one or more RocketLaunch records and cannot be deleted without affecting those records.");
             }

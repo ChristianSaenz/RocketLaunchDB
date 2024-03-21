@@ -238,7 +238,7 @@ namespace Rocket_Launch_Database__2_.Controllers
                         return NotFound($"RocketLaunch with ID {id} was not found.");
                     }
 
-                    // Only delete the RocketLaunch record. Do not delete the associated LaunchSite, LaunchVehicle, Payload, or User records.
+                    
                     _context.RocketLaunches.Remove(rocketLaunch);
 
                     await _context.SaveChangesAsync();
